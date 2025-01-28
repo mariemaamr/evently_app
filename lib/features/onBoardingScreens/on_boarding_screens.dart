@@ -14,35 +14,36 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-@override
+  @override
   void initState() {
     super.initState();
     LocalStorage.setBool(LocalStorageKeys.isFirstTime, false);
   }
+
   final List<Map<String, String>> onboardingData = [
     {
       "image": "assets/images/logo1.png",
       "title": "Personalize Your Experience",
       "description":
-      "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
+          "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
     },
     {
       "image": "assets/images/logo2.png",
       "title": "Find Events That Inspire You",
       "description":
-      "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you."
+          "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you."
     },
     {
       "image": "assets/images/logo3.png",
       "title": "Effortless Event Planning",
       "description":
-      "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests."
+          "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests."
     },
     {
       "image": "assets/images/logo4.png",
       "title": "Connect with Friends & Share Moments",
       "description":
-      "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories."
+          "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories."
     },
   ];
 
@@ -51,7 +52,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       _currentPage = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -99,25 +99,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Row(
                     children: List.generate(
                       onboardingData.length,
-                          (index) => buildDot(index: index),
+                      (index) => buildDot(index: index),
                     ),
                   ),
                   // Next Button
-    TextButton(
-    onPressed: () {
-    if (_currentPage == onboardingData.length - 1) {
-    Navigator.pushReplacementNamed(context, '/home');
-    } else {
-    _pageController.nextPage(
-    duration: Duration(milliseconds: 300),
-    curve: Curves.ease,
-    );
-    }
-    },
-      child: Image.asset("assets/images/next.png", width: 30),
-    ),
-    ],
-    ),
+                  TextButton(
+                    onPressed: () {
+                      if (_currentPage == onboardingData.length - 1) {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      } else {
+                        _pageController.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.ease,
+                        );
+                      }
+                    },
+                    child: Image.asset("assets/images/next.png", width: 30),
+                  ),
+                ],
+              ),
             ),
         ],
       ),
@@ -168,9 +168,7 @@ class OnboardingContent extends StatelessWidget {
               height: 50,
             ),
 
-
           Image.asset(image, height: 350),
-
 
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -204,10 +202,9 @@ class OnboardingContent extends StatelessWidget {
                   children: [
                     const Text(
                       "Language",
-                      style: TextStyle(fontSize: 18,
-    color: AppColors.primaryColor),
+                      style: TextStyle(
+                          fontSize: 18, color: AppColors.primaryColor),
                     ),
-
                     Row(
                       children: [
                         Image.asset('assets/images/us_flag.png', height: 24),
@@ -218,15 +215,13 @@ class OnboardingContent extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
                       "Theme",
-                      style: TextStyle(fontSize: 18,
-                      color: AppColors.primaryColor),
+                      style: TextStyle(
+                          fontSize: 18, color: AppColors.primaryColor),
                     ),
                     Row(
                       children: [
@@ -239,18 +234,16 @@ class OnboardingContent extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 24),
-
-
             ElevatedButton(
-              onPressed:onStartPressed,
+              onPressed: onStartPressed,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
               ),
               child: const Text(
                 "Let's Start",
