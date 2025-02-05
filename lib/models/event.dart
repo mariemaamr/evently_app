@@ -1,53 +1,59 @@
+import 'package:flutter/material.dart';
+
 class Event {
-
   static const String collectionName = 'Events';
-
 
   String? id;
   String title;
   String description;
   String image;
-  String eventName;
+  String category;
   DateTime dateTime;
-  String time;
+  TimeOfDay time;
   bool isFavorite;
-
 
   Event({
     this.id,
     required this.title,
     required this.description,
     required this.image,
-    required this.eventName,
+    required this.category,
     required this.dateTime,
     required this.time,
-    this.isFavorite=false,
+    this.isFavorite = false,
   });
 
- //convert json to event object
+  // Convert JSON to Event object
   factory Event.fromFirestore(Map<String, dynamic> json, {String? id}) {
     return Event(
-      id: json['id']as String?,
+      id: id ?? json['id'] as String?,
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       image: json['image'] ?? '',
-      eventName: json['eventName'] ?? '',
+      category: json['category'] ?? '',
       dateTime: DateTime.fromMillisecondsSinceEpoch(json['dateTime']),
-      time: json['time'] ?? '',
+      // ✅ Convert from milliseconds
+      time: json['time'] != null
+          ? TimeOfDay(
+              hour: int.parse(json['time'].split(":")[0]),
+              minute: int.parse(json['time'].split(":")[1]),
+            )
+          : TimeOfDay.now(),
       isFavorite: json['isFavorite'],
     );
   }
 
-  //  convert an event object to  json
   Map<String, dynamic> toFirestore() {
     return {
+      'id': id,
       'title': title,
       'description': description,
       'image': image,
-      'eventName': eventName,
+      'category': category,
       'dateTime': dateTime.millisecondsSinceEpoch,
-      'time': time,
+      'time': '${time.hour}:${time.minute}',
       'isFavorite': isFavorite,
     };
   }
 }
+

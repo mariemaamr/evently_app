@@ -1,7 +1,9 @@
+import 'package:evently/features/createEvent/create_event_screen.dart';
 import 'package:evently/features/homeScreen/widgets/custom_tab%20_bar.dart';
 import 'package:evently/features/homeScreen/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../core/themes/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
   }
 
   @override
@@ -111,7 +113,6 @@ class _HomeScreenState extends State<HomeScreen>
                 SizedBox(height: 16),
             TabBar(
                     isScrollable: true,
-                    controller: _tabController,
                     tabAlignment: TabAlignment.start,
                     labelColor: Colors.white,
                     indicatorColor: Colors.transparent,
@@ -152,13 +153,22 @@ class _HomeScreenState extends State<HomeScreen>
             ]),
             Center(child: Text("Sport Events")),
             Center(child: Text("Birthday Events")),
+            Center(child: Text("Music Events")),
+            Center(child: Text("Conference Events")),
+            Center(child: Text("Festival Events")),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primaryColor,
           shape: CircleBorder(side: BorderSide(color: Colors.white, width: 5)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => CreateEvent(),
+              ),
+            );
+          },
           child: Icon(Icons.add, color: Colors.white),
         ),
         bottomNavigationBar: BottomNavigationBar(
