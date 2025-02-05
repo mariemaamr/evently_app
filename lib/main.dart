@@ -1,8 +1,11 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:evently/core/constant/services/local_storage_service.dart';
 import 'package:evently/core/routes/app_routes.dart';
 import 'package:evently/firebase_options.dart';
+import 'package:evently/services/easy_loading_serv.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 var navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
@@ -12,6 +15,7 @@ Future<void> main() async {
   );
   await LocalStorage.init();
   runApp(const MyApp());
+  configloading();
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +27,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       onGenerateRoute: AppRoutes.onGeneratedRoute,
+      builder: EasyLoading.init(
+        builder: BotToastInit(),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
